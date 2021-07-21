@@ -1,41 +1,108 @@
 import React from "react";
-import { Divider, Drawer, IconButton, List } from "@material-ui/core";
-import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
-import clsx from "clsx";
-import { mainListItems, secondaryListItems } from "./listItems";
-import { useStyles } from "./DashboardStyles";
+import { makeStyles, Theme } from "@material-ui/core/styles";
+import Link from "next/link";
+import { IconButton } from "@material-ui/core";
+import Image from "next/image";
+import logo from "../../public/images/logoRight-1.png";
+import button1 from "../../public/images/mtt2Passive.png";
+import button2 from "../../public/images/vt-2.png";
 
-type SideBarProps = {
-  open: boolean;
-  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
-};
+const useStyles = makeStyles((theme: Theme) => ({
+  root: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    flexGrow: 1,
+    height: "96vh",
+    [theme.breakpoints.down("md")]: {
+      height: "100%",
+      flexDirection: "row",
+      justifyContent: "space-between",
+    },
+  },
+  buttons: {
+    width: "%100",
+    display: "flex",
+    flexDirection: "column",
+    marginTop: "20px",
+    [theme.breakpoints.down("md")]: {
+      width: "auto",
+      margin: "5px",
+      flexDirection: "row",
+    },
+  },
+  btn: {
+    fontSize: "4rem",
+    margin: "1rem auto",
+    padding: 0,
+    width: "78px",
+    height: "78px",
+    "&:hover": {
+      boxShadow: "none",
+      backgroundColor: "#ececec;",
+      transition: "transform 0.2s ease-in",
+      transform: "translateY(-15px)",
+    },
+    [theme.breakpoints.down("md")]: {
+      height: "50px",
+    },
+  },
+  logo: {
+    display: "block",
+    margin: "1rem auto",
+    width: "60%",
+    height: "80px",
+    transition: "transform 0.2s ease-in",
+    padding: 0,
+    [theme.breakpoints.down("md")]: {
+      margin: "1rem 0",
+      height: "50px",
+      width: "100 px",
+    },
+    "&:hover": {
+      boxShadow: "none",
+      backgroundColor: "#ececec;",
+      transform: "translateY(-15px)",
+    },
+  },
+}));
 
-export default function SideBarComponent({ open, setOpen }: SideBarProps) {
+export default function SideBarComponent() {
   const classes = useStyles();
 
-  const handleDrawerClose = () => {
-    setOpen(false);
-  };
-
   return (
-    <>
-      <Drawer
-        variant="permanent"
-        classes={{
-          paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
-        }}
-        open={open}
-      >
-        <div className={classes.toolbarIcon}>
-          <IconButton onClick={handleDrawerClose}>
-            <ChevronLeftIcon />
-          </IconButton>
-        </div>
-        <Divider />
-        <List>{mainListItems}</List>
-        <Divider />
-        <List>{secondaryListItems}</List>
-      </Drawer>
-    </>
+    <div className={classes.root}>
+      <IconButton className={classes.logo}>
+        <Link href="/" passHref>
+          <Image src={logo} alt="logo" layout="fill" objectFit="contain" />
+        </Link>
+      </IconButton>
+      <div className={classes.buttons}>
+        <IconButton className={classes.btn}>
+          <Link href="/validatetaskpage" passHref>
+            <Image
+              src={button1}
+              alt="Validate-Task-Button"
+              layout="fill"
+              objectFit="contain"
+              // width={78}
+              // height={78}
+            />
+          </Link>
+        </IconButton>
+        <IconButton className={classes.btn}>
+          <Link href="/" passHref>
+            <Image
+              src={button2}
+              alt="Translate-Task-Button"
+              layout="fill"
+              objectFit="contain"
+              // width={78}
+              // height={78}
+            />
+          </Link>
+        </IconButton>
+      </div>
+    </div>
   );
 }
