@@ -3,13 +3,13 @@ import Layout from "../../components/Layout";
 import axios from "axios";
 import TaskCard from "../../components/taskComponents/TaskCard";
 
+const DOMAIN_URL = process.env;
+
 export default function ValidateTaskPage() {
   const [translateTasks, setTranslateTasks] = useState<Data | {}>({});
 
   async function getTranslateTasks() {
-    const response = await axios.get(
-      "http://localhost:3000/api/translateTasks"
-    );
+    const response = await axios.get(`${DOMAIN_URL}api/translateTasks`);
 
     const data: Data = response.data;
 
