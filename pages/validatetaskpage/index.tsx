@@ -3,7 +3,7 @@ import Layout from "../../components/Layout";
 import axios from "axios";
 import TaskCard from "../../components/taskComponents/TaskCard";
 
-const DOMAIN_URL = process.env;
+const {DOMAIN_URL} = process.env;
 
 export default function ValidateTaskPage() {
   const [translateTasks, setTranslateTasks] = useState<Data | {}>({});
