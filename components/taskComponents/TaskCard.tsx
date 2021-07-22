@@ -1,6 +1,14 @@
-import { Button, Card, Divider, TextField } from "@material-ui/core";
+import {
+  Button,
+  Card,
+  Divider,
+  Menu,
+  MenuItem,
+  TextField,
+} from "@material-ui/core";
 import { makeStyles, Theme } from "@material-ui/core/styles";
-import React from "react";
+import React, { useState } from "react";
+import { Data } from "../../pages/validatetaskpage";
 
 const useStyles = makeStyles((theme: Theme) => ({
   card: {
@@ -25,30 +33,76 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
-export default function TaskCard() {
+type TaskCardProps = {
+  key: string;
+  task: {
+    id: string;
+    date: string;
+    originalText: string;
+    translatedText: {
+      TR: string;
+      RU: string;
+    };
+  };
+};
+
+export default function TaskCard({ task }: TaskCardProps) {
   const classes = useStyles();
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const [choosedLanguage, setChoosedLanguage] = useState("Choose a Language");
+
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  function handleChooseLanguage(e: any) {
+    handleClose();
+    setChoosedLanguage(e.target.innerText);
+  }
 
   return (
     <>
       <Card className={classes.card} elevation={3}>
         <div className={classes.cardContent}>
           <strong>Item Id: </strong>
-          <span>32156467964</span>
+          <span>{task.id}</span>
           <Divider orientation="vertical" />
           <strong>Time:</strong>
-          <span>{new Date().toString()}</span>
+          <span>{task.date}</span>
           <p>
-            <strong>Original Text: </strong>Lorem ipsum dolor sit, amet
-            consectetur adipisicing elit. Fugiat atque ad ipsa maxime
-            perferendis minima neque vero aliquid pariatur, nisi accusamus
-            voluptatem ullam, sint eligendi provident sapiente dolor! Officia,
-            ea.
+            <strong>Original Text: </strong>
+            {task.originalText}
           </p>
         </div>
 
         <Divider />
         <div style={{ marginTop: "1rem" }} className={classes.cardContent}>
-          <strong>Language:</strong> <span>TURKISH</span>
+          <strong>Language:</strong>
+          <Button
+            aria-controls="simple-menu"
+            aria-haspopup="true"
+            onClick={handleClick}
+          >
+            {choosedLanguage}
+          </Button>
+          <Menu
+            id="simple-menu"
+            anchorEl={anchorEl}
+            keepMounted
+            open={Boolean(anchorEl)}
+            onClose={handleClose}
+          >
+            <MenuItem value="Turkish" onClick={handleChooseLanguage}>
+              Turkish
+            </MenuItem>
+            <MenuItem value="Russian" onClick={handleChooseLanguage}>
+              Russian
+            </MenuItem>
+          </Menu>
         </div>
         <TextField margin="dense" multiline={true} variant="outlined" />
         <div className={classes.buttonContainer}>

@@ -1,0 +1,29 @@
+{
+    "1": {
+        "id": "1",
+        "date": "22/07/2021",
+        "originalText": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Fugiat atque ad ipsa maxime perferendis minima neque vero aliquid pariatur, nisi accusamus voluptatem ullam, sint eligendi provident sapiente dolor! Officia, ea.",
+        "translatedText": {
+            "TR": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Fugiat atque ad ipsa maxime perferendis minima neque vero aliquid pariatur, nisi accusamus voluptatem ullam, sint eligendi provident sapiente dolor! Officia, ea.",
+            "RU": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Fugiat atque ad ipsa maxime perferendis minima neque vero aliquid pariatur, nisi accusamus voluptatem ullam, sint eligendi provident sapiente dolor! Officia, ea."
+        }
+    },
+    "2": {
+        "id": "2",
+        "date": "22/07/2021",
+        "originalText": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Fugiat atque ad ipsa maxime perferendis minima neque vero aliquid pariatur, nisi accusamus voluptatem ullam, sint eligendi provident sapiente dolor! Officia, ea.",
+        "translatedText": {
+            "TR": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Fugiat atque ad ipsa maxime perferendis minima neque vero aliquid pariatur, nisi accusamus voluptatem ullam, sint eligendi provident sapiente dolor! Officia, ea.",
+            "RU": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Fugiat atque ad ipsa maxime perferendis minima neque vero aliquid pariatur, nisi accusamus voluptatem ullam, sint eligendi provident sapiente dolor! Officia, ea."
+        }
+    },
+    "3": {
+        "id": "3",
+        "date": "22/07/2021",
+        "originalText": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Fugiat atque ad ipsa maxime perferendis minima neque vero aliquid pariatur, nisi accusamus voluptatem ullam, sint eligendi provident sapiente dolor! Officia, ea.",
+        "translatedText": {
+            "TR": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Fugiat atque ad ipsa maxime perferendis minima neque vero aliquid pariatur, nisi accusamus voluptatem ullam, sint eligendi provident sapiente dolor! Officia, ea.",
+            "RU": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Fugiat atque ad ipsa maxime perferendis minima neque vero aliquid pariatur, nisi accusamus voluptatem ullam, sint eligendi provident sapiente dolor! Officia, ea."
+        }
+    }
+}
