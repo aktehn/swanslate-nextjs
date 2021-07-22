@@ -1,7 +1,7 @@
 
 const initialState = {};
 
-const baseReducer = (state = initialState, { type, payload }) => {
+const baseReducer = (state = initialState, { type, payload }: { type: string, payload: string; }) => {
     switch (type) {
 
         default:
