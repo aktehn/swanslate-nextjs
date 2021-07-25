@@ -63,10 +63,12 @@ export default function Translate() {
           variant="contained"
           color="primary"
           onClick={e =>
-            getReq(text, selectedLang).then(data => {
-              console.log(data);
-              setTranslatedText(data.translateData.text[0]);
-            })
+            getReq(text, selectedLang)
+              .then(data => {
+                console.log(data);
+                setTranslatedText(data.translateData.text[0]);
+              })
+              .catch(error => console.log(error))
           }
         >
           Translate
@@ -79,8 +81,9 @@ export default function Translate() {
 
 async function getReq(text: string, target: string) {
   const request = await axios(
-    `http://localhost:3000/api/translator?text=${text}&target=${target}`
+    `https://swanslate-nextjs.vercel.app/api/translator?text=${text}&target=${target}`
   );
+  console.log(request.data);
   const data: { translateData: TranslateData } = request.data;
   return data;
 }
