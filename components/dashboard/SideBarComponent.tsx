@@ -1,7 +1,7 @@
 import React from "react";
 import { makeStyles, Theme } from "@material-ui/core/styles";
 import Link from "next/link";
-import { IconButton } from "@material-ui/core";
+import { Button, IconButton } from "@material-ui/core";
 import Image from "next/image";
 import logo from "../../public/images/logoRight-1.png";
 import button1 from "../../public/images/mtt2Passive.png";
@@ -102,6 +102,11 @@ export default function SideBarComponent() {
             />
           </Link>
         </IconButton>
+        <Button variant="contained" color="secondary">
+          <Link href="/translate">
+            <a>Translate</a>
+          </Link>
+        </Button>
       </div>
     </div>
   );
