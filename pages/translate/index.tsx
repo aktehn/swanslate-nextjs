@@ -11,6 +11,7 @@ import {
 import { makeStyles, Theme } from "@material-ui/core/styles";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import Layout from "../../components/Layout";
 
 const useStyles = makeStyles((theme: Theme) => ({
   container: {
@@ -18,6 +19,15 @@ const useStyles = makeStyles((theme: Theme) => ({
     display: "flex",
     flexDirection: "column",
     justifyContent: "space-around",
+  },
+
+  button: {
+    marginTop: "1.5rem",
+  },
+
+  cardText: {
+    padding: "1rem",
+    textSize: "1.5rem",
   },
 }));
 
@@ -35,47 +45,48 @@ export default function Translate() {
   }, []);
 
   return (
-    <Container className={classes.container}>
-      <h1>Translate API Tester</h1>
-      <TextField
-        variant="outlined"
-        color="primary"
-        autoFocus={true}
-        fullWidth={true}
-        onChange={e => setText(e.target.value)}
-      />
-
-      <FormControl>
-        <InputLabel id="demo-simple-select-label">Language</InputLabel>
-        <Select
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
-          value={selectedLang}
-          onChange={e => setSelectedLang(e.target.value as string)}
-        >
-          {Object.keys(langList).map((langKey, i) => (
-            <MenuItem key={langKey} value={langKey}>
-              {Object.values(langList)[i]}
-            </MenuItem>
-          ))}
-        </Select>
-        <Button
-          variant="contained"
+    <Layout>
+      <Container className={classes.container}>
+        <h1>Translate API Tester</h1>
+        <TextField
+          variant="outlined"
           color="primary"
-          onClick={e =>
-            getReq(text, selectedLang)
-              .then(data => {
-                console.log(data);
-                setTranslatedText(data.translateData.text[0]);
-              })
-              .catch(error => console.log(error))
-          }
-        >
-          Translate
-        </Button>
-      </FormControl>
-      <Card>{translatedText}</Card>
-    </Container>
+          autoFocus={true}
+          fullWidth={true}
+          onChange={e => setText(e.target.value)}
+        />
+
+        <FormControl>
+          <InputLabel id="demo-simple-select-label">Language</InputLabel>
+          <Select
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            value={selectedLang}
+            variant="filled"
+            onChange={e => setSelectedLang(e.target.value as string)}
+          >
+            {Object.keys(langList).map((langKey, i) => (
+              <MenuItem key={langKey} value={langKey}>
+                {Object.values(langList)[i]}
+              </MenuItem>
+            ))}
+          </Select>
+          <Button
+            className={classes.button}
+            variant="contained"
+            color="primary"
+            onClick={e =>
+              getReq(text, selectedLang)
+                .then(data => setTranslatedText(data.translateData.text[0]))
+                .catch(error => console.log(error))
+            }
+          >
+            Translate
+          </Button>
+        </FormControl>
+        <Card className={classes.cardText}>{translatedText}</Card>
+      </Container>
+    </Layout>
   );
 }
 
@@ -83,7 +94,6 @@ async function getReq(text: string, target: string) {
   const request = await axios(
     `https://swanslate-nextjs.vercel.app/api/translator?text=${text}&target=${target}`
   );
-  console.log(request.data);
   const data: { translateData: TranslateData } = request.data;
   return data;
 }
